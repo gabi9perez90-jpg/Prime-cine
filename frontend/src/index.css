@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
+  color: #fff;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ========================================
+   SUPORTE PARA ANDROID TV E NAVEGAÇÃO D-PAD
+   ======================================== */
+
+/* Estilos de foco para navegação com controle remoto */
+*:focus-visible {
+  outline: 3px solid #9333ea !important;
+  outline-offset: 3px;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[role="button"]:focus-visible {
+  box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.4),
+              0 0 20px rgba(147, 51, 234, 0.6);
+  transform: scale(1.08);
+}
+
+/* Cards com foco */
+[data-testid*="card"]:focus-within,
+[data-testid*="card"]:focus {
+  outline: 3px solid #9333ea;
+  transform: scale(1.08);
+  z-index: 10;
+  box-shadow: 0 10px 40px rgba(147, 51, 234, 0.5);
+}
+
+/* Remover outline padrão em dispositivos touch */
+@media (hover: hover) and (pointer: fine) {
+  *:focus {
+    outline: 2px solid #9333ea;
+  }
+}
+
+/* ========================================
+   RESPONSIVIDADE PARA MOBILE E TV
+   ======================================== */
+
+/* Mobile First - Pequenos dispositivos */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* Smart TVs e telas grandes */
+@media (min-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+  
+  .container {
+    max-width: 1920px;
+  }
+}
+
+/* 4K TVs */
+@media (min-width: 3840px) {
+  html {
+    font-size: 24px;
+  }
+  
+  .container {
+    max-width: 3200px;
+  }
+}
+
+/* Landscape mode para mobile */
+@media (orientation: landscape) and (max-height: 500px) {
+  header {
+    padding: 0.5rem 1rem;
+  }
+  
+  .hero-section {
+    height: 100vh;
+  }
+}
+
+/* ========================================
+   OTIMIZAÇÕES PARA PERFORMANCE
+   ======================================== */
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Aceleração de hardware para animações */
+.video-card,
+button,
+a {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Lazy loading para imagens */
+img {
+  content-visibility: auto;
+}
+
+/* ========================================
+   ACESSIBILIDADE
+   ======================================== */
+
+/* Modo de alto contraste */
+@media (prefers-contrast: high) {
+  *:focus-visible {
+    outline-width: 5px;
+  }
+}
+
+/* Redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
